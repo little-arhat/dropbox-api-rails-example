@@ -6,17 +6,12 @@ class DropboxController < ApplicationController
   end
 
   def show
-    begin
-      consumer      = Dropbox::API::OAuth.consumer(:authorize)
-      request_token = consumer.get_request_token
-      session[:dropbox_oauth_request_token]  = request_token.token
-      session[:dropbox_oauth_request_secret] = request_token.secret
-      url = request_token.authorize_url(:oauth_callback => dropbox_callback_url)
-      redirect_to url
-    rescue Net::HTTPFatalError
-      flash[:error] = 'Failed to connect to Dropbox, please try again.'
-      redirect_back_url
-    end
+    consumer      = Dropbox::API::OAuth.consumer(:authorize)
+    request_token = consumer.get_request_token
+    session[:dropbox_oauth_request_token]  = request_token.token
+    session[:dropbox_oauth_request_secret] = request_token.secret
+    url = request_token.authorize_url(:oauth_callback => dropbox_callback_url)
+    redirect_to url
   end
 
   def create

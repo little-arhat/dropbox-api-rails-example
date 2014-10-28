@@ -1,8 +1,11 @@
 defaults: &defaults
-
-development:
-  <<: *defaults
   dropbox:
     app_key: ""
     secret_key: ""
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
 
