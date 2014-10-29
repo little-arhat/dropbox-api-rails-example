@@ -1,6 +1,6 @@
 # Dropbox API Rails example
 
-This is an example Rails app for the dropbox-api Ruby gem. It also includes controller and view specs.
+This is an example Rails app for the [dropbox-api Ruby gem](https://github.com/futuresimple/dropbox-api). It also includes controller and view specs.
 
 It it is a simple app which displays all images in its own Dropbox folder.
 
@@ -23,7 +23,7 @@ Replace YOUR_DROPBOX_APP_KEY and YOUR_DROPBOX_APP_SECRET with key and secret of 
 
 ## Example setup on heroku
 
-Once you're done setting up an up on heroku, run the following command:
+Once you're done setting up an up on heroku, run the following command to set up environment variable:
 
 ```sh
 heroku config:set DROPBOX_KEY=[app_key] DROPBOX_SECRET=[app_secret] SECRET_KEY_BASE=[long random string]
