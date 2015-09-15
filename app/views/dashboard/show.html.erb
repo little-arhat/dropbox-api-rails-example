@@ -1,16 +1,31 @@
 <h1>Photo viewer</h1>
 
+<% content_for :head do %>
+<script type="text/javascript">
+  console.log(1);
+  window.onload = function() {
+  <% dropbox.ls.each do |file| %>
+  window.player_<%= file.direct_url.url.hash.abs %> = new Clappr.Player({source: "<%= file.direct_url.url + '?raw=1' %>",
+  parentId: "#song-<%= file.direct_url.url.hash.abs %>", autoPlay:false,
+  width:600, height:50, hideMediaControl:false});
+  <% end %>
+  }
+    console.log(3);
+</script>
+<% end %>
+
 <div class="photos">
   <% files = dropbox.ls %>
   <% if files.empty? %>
     No photos
   <% else %>
-    <% dropbox.ls.each do |file| %>
-      <% if file.mime_type.match('image') %>
-        <div class="photo">
-        <%= image_tag file.direct_url.url %>
-        </div>
-      <% end %>
+    <% files.each do |file| %>
+    <div class="photo" id="song-<%= file.direct_url.url.hash.abs %>">
+    </div>
     <% end %>
-  <% end %>
+    <% end %>
+    <%= form_tag({action: :upload}, multipart: true) do %>
+    <%= file_field_tag('song', accept: 'audio/mpeg') %>
+    <%= submit_tag("submit") %>
+    <% end %>
 </div>

@@ -3,7 +3,9 @@
   <head>
     <title>dropbox-api Rails example</title>
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'http://cdn.clappr.io/latest/clappr.min.js' %>
     <%= csrf_meta_tags %>
+    <%= yield :head %>
   </head>
   <body>
 
