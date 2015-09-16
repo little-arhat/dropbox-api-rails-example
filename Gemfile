@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-ruby "2.1.4"
+ruby "2.2.3"
 
 gem 'rails', '4.1.6'
 
+gem 'eventmachine', '~> 1.0.4'
 gem 'dropbox-api'
 gem 'choices'
 gem 'thin'
