@@ -9,6 +9,7 @@ gem 'dropbox-api'
 gem 'choices'
 gem 'thin'
 gem 'pg'
+gem 'puma'
 
 gem 'rails_12factor', group: :production
 
