@@ -1,0 +1,8 @@
+<h1>Upload list</h1>
+
+<div class="songs">
+  <%= form_tag({action: :upload}, multipart: true) do %>
+  <%= file_field_tag('song', accept: 'audio/mpeg') %>
+  <%= submit_tag("submit") %>
+  <% end %>
+</div>

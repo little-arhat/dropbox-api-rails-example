@@ -8,9 +8,10 @@ gem 'dropbox-api'
 gem 'choices'
 gem 'thin'
 
+gem 'sqlite3'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
 end
-

@@ -1,31 +1,29 @@
-<h1>Photo viewer</h1>
+<h1>Song list</h1>
 
 <% content_for :head do %>
 <script type="text/javascript">
   console.log(1);
   window.onload = function() {
-  <% dropbox.ls.each do |file| %>
-  window.player_<%= file.direct_url.url.hash.abs %> = new Clappr.Player({source: "<%= file.direct_url.url + '?raw=1' %>",
-  parentId: "#song-<%= file.direct_url.url.hash.abs %>", autoPlay:false,
+  <% @songs.each do |song| %>
+  console.log("<%= song.url %>")
+  window.player_<%= song.url.hash.abs %> = new Clappr.Player({source: "<%= song.url %>",
+  parentId: "#song-<%= song.url.hash.abs %>", autoPlay:false,
   width:600, height:50, hideMediaControl:false});
   <% end %>
+  console.log(3);
   }
-    console.log(3);
 </script>
 <% end %>
 
-<div class="photos">
-  <% files = dropbox.ls %>
-  <% if files.empty? %>
-    No photos
-  <% else %>
-    <% files.each do |file| %>
-    <div class="photo" id="song-<%= file.direct_url.url.hash.abs %>">
+<div class="songs">
+  <div class="photo">
+    <a href="<%= url_for :controller => 'upload', :action => 'show' %>"> Upload </a>
+  </div>
+  <% @songs.each do |song| %>
+  <div class="photo">
+    <%= song.title %>
+    <div  id="song-<%= song.url.hash.abs %>">
     </div>
-    <% end %>
-    <% end %>
-    <%= form_tag({action: :upload}, multipart: true) do %>
-    <%= file_field_tag('song', accept: 'audio/mpeg') %>
-    <%= submit_tag("submit") %>
-    <% end %>
+  </div>
+  <% end %>
 </div>
