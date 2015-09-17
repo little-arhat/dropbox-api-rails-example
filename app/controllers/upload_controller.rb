@@ -39,7 +39,9 @@ class UploadController < ApplicationController
     rescue # oy-oy-oy! to catch 404
       file = dropbox.upload(uploaded_io.original_filename, uploaded_io.tempfile)
     end
-    url = file.direct_url.url + '?raw=1'
+    puts file
+    url = file.share_url(:short_url => false).url
+    url = url.sub('www.dropbox.com', 'dl.dropboxusercontent.com').sub('?dl=0', '?raw=1')
     if Song.where(:url => url)
       s = Song.create :title => uploaded_io.original_filename, :url => url
       s.save!
